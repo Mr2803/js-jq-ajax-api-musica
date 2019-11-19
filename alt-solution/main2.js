@@ -14,39 +14,38 @@ partite dalla questione logica e quindi andate di console.log;
 poi aggiungete la questione output handlebars. */
 
 $(document).ready(function() {
-	/* var source = $(".cell").html()
-	var template = Handlebars.compile(source)
-
-	for (var i = 0; i < 10; i++) {
-		$(".cds-container").append(template);
-	} */
+	
+	callAjax();
 
 
+
+});
+
+function callAjax(){
 
 	$.ajax({
 		url: "https://flynn.boolean.careers/exercises/api/array/music",
 		method: "GET",
 		success: function (data) {
-			console.log("questo è ciò che mi ritorna l'api per intero " , data.response)
+			console.log("questo è ciò che mi ritorna l'api per intero ", data.response)
 			for (var i = 0; i < data.response.length; i++) {
-
-			
+				
 				//il source mi restituisce il div per intero che ho inserito nell'html
 				var source = $(".cd-global").text()
 				/* console.log(source) */
 				var template = Handlebars.compile(source)
 				/* console.log(template) */
-				
+	
 				//avendo assegnato con handlebars la stessa chiave valore dell'array che mi restituisce l'api , non ho bisogno di creare un oggetto
 				/* console.log(globalsong) */
 				var html = template(data.response[i]);
 				console.log(data.response[i])
 				$(".cds-container.container").append(html)
 			}
-			
+	
 		},
 		error: function (richiesta, stato, errori) {
 			alert("Errore " + richiesta + stato + errori);
 		}
 	})
-});
+}
