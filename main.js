@@ -14,5 +14,16 @@ partite dalla questione logica e quindi andate di console.log;
 poi aggiungete la questione output handlebars. */
 
 $(document).ready(function() {
-	//Code
+	$.ajax({
+		url: "https://flynn.boolean.careers/exercises/api/array/music",
+		method: "GET",
+		success: function (data) {
+			console.log(data.response)
+			for (var i = 0; i < data.response.length; i++) {
+
+				console.log(data.response[i].poster + " " + data.response[i].title + data.response[i].author + " " + data.response[i].genre + " " + data.response[i].year);
+			}
+			
+		}
+	})
 });
